@@ -24,10 +24,7 @@ public class Crawler {
         }
 
         protected void map( ImmutableBytesWritable inKey, Result columns, Context context ) throws IOException, InterruptedException {
-        	Text outKey = new Text();
-        	String str = Bytes.toString(inKey.get());
-        	String val = str.split("\\.")[0];
-        	outKey.set(val);
+        	Text outKey = new Text(Bytes.toString(inKey.get()));
         	context.write( outKey,  new Text(inKey.toString()));
         }
     }
